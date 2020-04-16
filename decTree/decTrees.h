@@ -46,6 +46,11 @@ public:
     void deleteNode(const int &x);
     int getHeight(Node *r);
     Node * getRoot();
+    void toVectorOfPairs(vector<pair<int,int> > & r, Node * n);
+    void showAll(Node *t) const;
+    float showAllSmallerThan(const float & x, Node* t, float sum) const;
+    float sumSmallerThan(const float & x) const;
+
 private:
     Node *root;
     Node *nullNode;
@@ -54,7 +59,7 @@ private:
     Node * insertNode(int x, int priority, Node * t);
     void deleteNode(const int & x, Node * & t);
     void clear(Node * & t);
-    void showAll(Node *t) const;
+
 };
 
 
