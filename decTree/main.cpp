@@ -62,6 +62,26 @@ const int & Treap::searchNode(const int & x ) const {
     }
 }
 
+
+
+float Treap::showAllSmallerThan(const float & x, Node* t, float sum) const {
+    if(t->leftChild != nullptr) {
+        sum = showAllSmallerThan(x, t->leftChild, sum);
+    }
+    if(t->rightChild != nullptr) {
+        sum = showAllSmallerThan(x, t->rightChild, sum);
+    }
+    if((t->rightChild == nullptr) && (t->leftChild == nullptr)) {
+    }
+    if (t->data < x) sum += t->data;
+    return sum;
+}
+
+float Treap::sumSmallerThan(const float & x) const{
+    return showAllSmallerThan(x, root, 0);
+}
+
+
 void Treap::makeEmpty( ) {
     clear(root);
 }
@@ -131,12 +151,13 @@ void Treap::deleteNode(const int & x, Node * & t) {
 
 
 void Treap::clear(Node * & t ) {
-    if( t != NULL ) {
+    if( t != nullptr) {
         clear(t->leftChild);
         clear(t->rightChild);
         delete t;
     }
 }
+
 void Treap::showAll(Node *t ) const {
     if( t != nullptr ) {
         showAll(t->leftChild);
@@ -144,6 +165,9 @@ void Treap::showAll(Node *t ) const {
         showAll(t->rightChild);
     }
 }
+
+
+
 int Treap::getHeight(Node *r ) {
     if (r == nullptr || r->priority == 0) {
         return 0;
@@ -168,4 +192,48 @@ Node* Treap::rotateWithRightChild(Node * & node) const {
     result->leftChild = node;
     node->rightChild = x;
     return result;
+}
+
+void Treap::toVectorOfPairs(vector<pair<int,int> > & r, Node * n)  {
+    if (n == nullptr)
+        return;
+    r.push_back(make_pair(n->data,n->priority));
+    toVectorOfPairs(r, n->leftChild);
+    toVectorOfPairs(r, n->rightChild);
+}
+
+
+
+
+
+
+
+
+
+int main(){
+
+    Treap *t = new Treap();
+
+
+    t->insertNode( 10,1 );
+    t->insertNode( 4,6 );
+    t->insertNode( 3,4 );
+    t->insertNode( 20,7 );
+    t->insertNode( 15,4 );
+    t->insertNode( 5,1 );
+
+    vector<pair<int,int> > p;
+    t->toVectorOfPairs(p, t->getRoot());
+    for (int i = 0 ; i < p.size();i++) {
+        cout << "d = " << p[i].first << " f = " << p[i].second << endl;
+    }
+    float vectorSum = 0;
+    float x = 10;
+    for (auto& entry : p){
+        if (entry.first < x) vectorSum += entry.first;
+    }
+    std::cout << "std::vector answer: " << vectorSum << std::endl;
+
+
+    std::cout << "treap answer: " << t->sumSmallerThan(10);
 }
