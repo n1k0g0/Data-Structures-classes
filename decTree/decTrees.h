@@ -41,7 +41,7 @@ public:
     const int & searchNode(const int& x) const;
     bool isEmpty( ) const;
     void showAll( ) const;
-    void makeEmpty( );
+    void clear( );
     void insertNode(int x , int priority);
     void deleteNode(const int &x);
     int getHeight(Node *r);
@@ -50,6 +50,7 @@ public:
     void showAll(Node *t) const;
     float showAllSmallerThan(const float & x, Node* t, float sum) const;
     float sumSmallerThan(const float & x) const;
+    void intersect(Treap *t);
 
 private:
     Node *root;
