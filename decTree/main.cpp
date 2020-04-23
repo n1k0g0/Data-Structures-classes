@@ -19,7 +19,7 @@ Treap::Treap(const Treap& inp){
 
 
 Treap::~Treap( ) {
-    makeEmpty( );
+    clear();
 }
 
 void Treap::insertNode(int x, int priority ) {
@@ -82,7 +82,7 @@ float Treap::sumSmallerThan(const float & x) const{
 }
 
 
-void Treap::makeEmpty( ) {
+void Treap::clear( ) {
     clear(root);
 }
 
@@ -203,6 +203,28 @@ void Treap::toVectorOfPairs(vector<pair<int,int> > & r, Node * n)  {
 }
 
 
+void intersect_aux(Node *node1, Node *node2) {
+    if (node1 == nullptr) return;
+    if (node2 == nullptr) return;
+    if (node1->data == node2->data) {
+        intersect_aux(node1->leftChild, node2->leftChild);
+        intersect_aux(node1->rightChild, node2->leftChild);
+        return;
+    } else {
+        if (node1->data > node2->data) {
+            intersect_aux(node1, node2->rightChild);
+            intersect_aux(node1->leftChild, node2);
+        }
+        if (node1->data < node2->data) {
+            intersect_aux(node1->rightChild, node2);
+            intersect_aux(node1, node2->leftChild);
+        }
+    }
+}
+
+void Treap::intersect(Treap *t) {
+    intersect_aux(t->getRoot(),this->getRoot());
+}
 
 
 
