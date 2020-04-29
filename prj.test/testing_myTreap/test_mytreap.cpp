@@ -1,4 +1,4 @@
-#include "queue/myTreap.h"
+#include "treap/myTreap.h"
 
 int main(){
 
