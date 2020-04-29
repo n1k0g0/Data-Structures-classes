@@ -1,0 +1,5 @@
+add_executable(testing_myTreap test_myTreap.cpp)
+target_link_libraries(testing_myTreap treap)
+include(CTest)
+include(Catch)
+catch_discover_tests(testing_myTreap)
