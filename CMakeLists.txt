@@ -15,7 +15,7 @@ endif()
 
 
 
-project(labs)
+project(cpp_sem6_labs)
 
 include_directories(
   prj.lab
