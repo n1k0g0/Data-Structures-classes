@@ -1,36 +1,28 @@
-#include "myQueue.h"
+
+#include "queuel.h"
 #include <stdexcept>
 
 
-
-
-//написан список инициализации
-Queuea::Queuea(int cap): first {-1}, last {0}, bufferSize {cap} {
-
+queueA::queueA(int cap): first {-1}, last {0}, bufferSize {cap} {
     queue = new float [cap];
 }
 
-Queuea::Queuea(const Queuea& inQ) {
+queueA::queueA(const queueA& inQ) {
     first = inQ.first;
     last = inQ.last;
     bufferSize = inQ.bufferSize;
-    queue = new float[bufferSize]; //проверка на пустоту inQ
-    //std::cout << std::endl << std::endl << bufferSize << std::endl;
+    queue = new float[bufferSize];
     for (int ite = 0; ite < bufferSize; ++ite){
         queue[ite] = inQ.queue[ite];
     }
 }
 
 
-
-Queuea::~Queuea(){
+queueA::~queueA(){
     delete [] queue;
 }
 
-
-
-//прохождение по циклу вместо приравнивания указателей
-Queuea& Queuea::operator=(const Queuea &inQ) {
+queueA& queueA::operator=(const queueA &inQ) {
 
     if (this != &inQ) {
         first = inQ.first;
@@ -47,7 +39,7 @@ Queuea& Queuea::operator=(const Queuea &inQ) {
 
 }
 
-void Queuea::push(const int value){
+void queueA::push(const int value){
     if (last % bufferSize == first % bufferSize){
         std::cout << "queue is full";
     }
@@ -82,26 +74,13 @@ void Queuea::push(const int value){
     }
 }
 
-/*
-
- доходим до границ массива:
- идем в начало
- если начало занято мы
-выделяем новую память
- копируем поэлементно
-
-
-
-
- */
-
-bool Queuea::is_empty() const{
+bool queueA::isEmpty() const{
     if (first == -1) return 1;
     return 0;
 }
 
-void Queuea::pop(){ //pop,
-    if (this->is_empty()){
+void queueA::pop(){ //pop,
+    if (this->isEmpty()){
         throw std::logic_error("QueueA::pop() - empty queue");
     }
     else{
@@ -113,14 +92,15 @@ void Queuea::pop(){ //pop,
     }
 }
 
-
-float& Queuea::top(){
-    if (this->is_empty()){
+float& queueA::top(){
+    if (this->isEmpty()){
         throw std::logic_error("QueueA::top() - empty queue");
     }
     std::cout << bufferSize << std::endl << std::endl;
     return queue[first];
 }
+
+
 
 
 
