@@ -62,8 +62,6 @@ const int & Treap::searchNode(const int & x ) const {
     }
 }
 
-
-
 float Treap::showAllSmallerThan(const float & x, Node* t, float sum) const {
     if(t->leftChild != nullptr) {
         sum = showAllSmallerThan(x, t->leftChild, sum);
@@ -81,7 +79,6 @@ float Treap::sumSmallerThan(const float & x) const{
     return showAllSmallerThan(x, root, 0);
 }
 
-
 void Treap::clear( ) {
     clear(root);
 }
@@ -96,10 +93,6 @@ void Treap::showAll( ) const {
     else
         showAll(root);
 }
-
-
-
-
 
 
 
@@ -167,7 +160,6 @@ void Treap::showAll(Node *t ) const {
 }
 
 
-
 int Treap::getHeight(Node *r ) {
     if (r == nullptr || r->priority == 0) {
         return 0;
@@ -194,6 +186,7 @@ Node* Treap::rotateWithRightChild(Node * & node) const {
     return result;
 }
 
+
 void Treap::toVectorOfPairs(vector<pair<int,int> > & r, Node * n)  {
     if (n == nullptr)
         return;
@@ -201,7 +194,6 @@ void Treap::toVectorOfPairs(vector<pair<int,int> > & r, Node * n)  {
     toVectorOfPairs(r, n->leftChild);
     toVectorOfPairs(r, n->rightChild);
 }
-
 
 void intersect_aux(Node *node1, Node *node2) {
     if (node1 == nullptr) return;
