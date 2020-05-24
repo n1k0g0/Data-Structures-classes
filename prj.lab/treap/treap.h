@@ -26,7 +26,7 @@ public:
         this->rightChild = right;
         this->priority = pr;
     }
-    friend class Treap;
+
 };
 
 class Treap{
@@ -35,11 +35,7 @@ public:
     Treap();
     ~Treap( );
     int size;
-    const int & findMin( ) const;
-    const int & findMax( ) const;
-    const int & searchNode(const int& x) const;
-    bool isEmpty( ) const;
-    void showAll( ) const;
+
     void clear( );
     void insertNode(int x , int priority);
     void deleteNode(const int &x);
@@ -47,11 +43,16 @@ public:
     Node * getRoot();
     void toVectorOfPairs(vector<pair<int,int> > & r, Node * n);
     void showAll(Node *t) const;
-    float showAllSmallerThan(const float & x, Node* t, float sum) const;
     float sumSmallerThan(const float & x) const;
-    void intersect(Treap *t);
 
 private:
+    void intersect(Treap *t);
+    float showAllSmallerThan(const float & x, Node* t, float sum) const;
+    const int & findMin( ) const;
+    const int & findMax( ) const;
+    const int & searchNode(const int& x) const;
+    bool isEmpty( ) const;
+    void showAll( ) const;
     Node *root{nullptr};
     Node *nullNode{nullptr};
     Node * rotateWithLeftChild(Node * & t) const;
