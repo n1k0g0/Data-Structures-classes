@@ -27,7 +27,7 @@ public:
         this->rightChild = right;
         this->priority = pr;
     }
-    friend class Treap;
+
 };
 
 class Treap{
