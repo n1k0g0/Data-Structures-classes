@@ -102,17 +102,22 @@ Node * Treap::insertNode(int x, int priority, Node * t ) { //internal method
         return new Node(x, nullptr, nullptr, priority );
     }
     if( x < t->data ) {
-        t->leftChild = insertNode(x, priority, t->leftChild);
-        if(t->leftChild->priority >= t->priority ) {
-            return rotateWithLeftChild( t );
+        if (t->leftChild){
+            t->leftChild = insertNode(x, priority, t->leftChild);
+            if(t->leftChild->priority >= t->priority ) {
+                return rotateWithLeftChild( t );
+            }
+            
         }
         return t;
     }
 
     if(t->data < x ) {
-        t->rightChild = insertNode(x, priority, t->rightChild);
-        if(t->rightChild->priority > t->priority) {
-            return rotateWithRightChild( t );
+        if (t->rightChild){
+            t->rightChild = insertNode(x, priority, t->rightChild);
+            if(t->rightChild->priority > t->priority) {
+                return rotateWithRightChild( t );
+            }
         }
         return t;
     }
@@ -171,17 +176,23 @@ Node *  Treap::getRoot() {
     return this->root;
 }
 Node* Treap::rotateWithLeftChild(Node * & node) const {
-    Node *result = node->leftChild;
-    Node *x = result->rightChild;
-    result->rightChild = node;
+    if (node->leftChild != nullptr)
+        Node *result = node->leftChild;
+    if (node->rightChild != nullptr)
+        Node *x = result->rightChild;
+    if (node != nullptr)
+        result->rightChild = node;
     node->leftChild = x;
     return result;
 }
 
 Node* Treap::rotateWithRightChild(Node * & node) const {
-    Node *result = node->rightChild;
-    Node *x = result->leftChild;
-    result->leftChild = node;
+    if (node->rightChild != nullptr)
+        Node *result = node->rightChild;
+    if (node->leftChild != nullptr)
+        Node *x = result->leftChild;
+    if (node != nullptr)
+        result->leftChild = node;
     node->rightChild = x;
     return result;
 }
