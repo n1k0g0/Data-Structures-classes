@@ -1,4 +1,4 @@
-#include "myTreap.h"
+#include "treap.h"
 
 
 using namespace std;
