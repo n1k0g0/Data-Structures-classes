@@ -1,5 +1,0 @@
-add_executable(testing_myQueue test_myQueue.cpp)
-target_link_libraries(testing_myQueue queue)
-include(CTest)
-include(Catch)
-catch_discover_tests(testing_myQueue)
