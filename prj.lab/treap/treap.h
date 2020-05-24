@@ -7,14 +7,13 @@
 
 #include <iostream>
 #include <vector>
-using namespace std;
 class Treap;
 class Node {
 public:
-    Node *leftChild;
-    Node *rightChild;
-    float data;
-    int priority;
+    Node *leftChild{nullptr};
+    Node *rightChild{nullptr};
+    float key{0};
+    int priority{0};
 
     Node( ) {
         this->leftChild = nullptr;
@@ -22,12 +21,12 @@ public:
         this->priority = 0;
     }
     Node(int inpElement, Node *left, Node *right, int pr) {
-        this->data = inpElement;
+        this->key = inpElement;
         this->leftChild = left;
         this->rightChild = right;
         this->priority = pr;
     }
-
+    friend class Treap;
 };
 
 class Treap{
@@ -53,8 +52,8 @@ public:
     void intersect(Treap *t);
 
 private:
-    Node *root;
-    Node *nullNode;
+    Node *root{nullptr};
+    Node *nullNode{nullptr};
     Node * rotateWithLeftChild(Node * & t) const;
     Node * rotateWithRightChild(Node * & t) const;
     Node * insertNode(int x, int priority, Node * t);
@@ -62,6 +61,7 @@ private:
     void clear(Node * & t);
 
 };
+
 
 
 
