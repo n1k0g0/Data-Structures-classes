@@ -9,14 +9,13 @@
 
 #include <iostream>
 #include <vector>
-using namespace std;
 class VectorBasedTreap;
 class Node {
 public:
-    int leftChildNum;
-    int rightChildNum;
-    int priority;
-    int key;
+    int leftChildNum{0};
+    int rightChildNum{0};
+    int priority{0};
+    int key{0};
 
     Node() {
         leftChildNum = -1;
@@ -48,8 +47,8 @@ public:
 
     vector<Node> dataVector;
 private:
-    int rootPr;
-    int size;
+    int rootPr{0};
+    int size{0};
 
     void rotateWithLeftChild(Node* &y) const;
     void rotateWithRightChild(Node* &x) const;
