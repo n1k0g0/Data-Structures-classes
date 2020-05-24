@@ -1,5 +1,3 @@
-
-
 #ifndef queuea_h
 #define queuea_h
 
@@ -18,8 +16,8 @@ class queueL
 private:
     struct leaf
     {
-        T data;
-        leaf * pnext;
+        T data{0};
+        leaf * pnext{0};
         leaf(T& _data, leaf * _pnext)
         {
             data = _data;
@@ -89,7 +87,7 @@ public:
     }
 
 private:
-    leaf* m_pBegin, *m_pEnd;
+    leaf* m_pBegin{0}, *m_pEnd{0};
 };
 
 
