@@ -2,7 +2,7 @@
 // Created by Николай Горбачев on 13.05.2020.
 //
 
-#include "myVectorBasedTreap.h"
+#include "vectorBasedTreap.h"
 
 using namespace std;
 
