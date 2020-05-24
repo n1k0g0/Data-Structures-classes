@@ -1,7 +1,7 @@
 #include "treap.h"
 
 
-using namespace std;
+
 
 
 Treap::Treap(){
