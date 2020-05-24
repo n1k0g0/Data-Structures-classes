@@ -30,7 +30,7 @@ public:
         priority = inPriority;
     }
     ~Node() = default;
-    friend class VectorBasedTreap;
+
 };
 
 
