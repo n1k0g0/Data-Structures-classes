@@ -1,4 +1,5 @@
-#include "queue/myQueue.h"
+#include "queueA/queueA.h"
+#include "queueL/queueL.h"
 #include <exception>
 #include <chrono>
 #include <fstream>
