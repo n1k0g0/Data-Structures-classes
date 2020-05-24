@@ -4,7 +4,7 @@
 
 #include "vectorBasedTreap.h"
 
-using namespace std;
+
 
 
 
