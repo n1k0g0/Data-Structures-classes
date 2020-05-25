@@ -7,6 +7,8 @@
 
 
 
+
+
 #include <iostream>
 #include <vector>
 class VectorBasedTreap;
@@ -40,21 +42,22 @@ public:
     ~VectorBasedTreap( ) = default;
     void insertNode(int x);
     bool removeNode(int x, int start);
-    void split(const Nod* &t, int key, const Node &l,const Node &r);
+    void split(Node *t, int key, Node l,Node r);
 
-    void insert(const Node &root, int key);
+    void insert(Node *root, int key);
     int sumFrom(const Node &start);
 
-    vector<Node> dataVector;
+    std::vector<Node> dataVector;
 private:
     int rootPr{0};
     int size{0};
 
-    void rotateWithLeftChild(const Node &y) const;
-    void rotateWithRightChild(const Node &x) const;
+    void rotateWithLeftChild(Node &y) const;
+    void rotateWithRightChild(Node &x) const;
 
-    void insert(const Node &root, int key, int priority);
+    void insert(Node *root, int key, int priority);
 };
+
 
 
 
