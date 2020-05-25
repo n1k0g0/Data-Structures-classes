@@ -24,44 +24,44 @@ VectorBasedTreap::VectorBasedTreap(const VectorBasedTreap& inp){
 
 
 
-void VectorBasedTreap::rotateWithLeftChild(Node* &y) const{
-    Node x = dataVector[y->rightChildNum];
+void VectorBasedTreap::rotateWithLeftChild(const Node &y) const{
+    Node x = dataVector[y.rightChildNum];
 
-    Node r = dataVector[y->leftChildNum]; // will not change
+    Node r = dataVector[y.leftChildNum]; // will not change
     Node g = dataVector[x.leftChildNum];
     Node b = dataVector[x.rightChildNum]; // will not change
 
-    x.leftChildNum = y->priority;
-    y->rightChildNum = g.priority;
+    x.leftChildNum = y.priority;
+    y.rightChildNum = g.priority;
 
-    y = &x;
+    y = x;
 }
 
-void VectorBasedTreap::rotateWithRightChild(Node* &x) const{
-    Node y = dataVector[x->rightChildNum];
+void VectorBasedTreap::rotateWithRightChild(const Node &x) const{
+    Node y = dataVector[x.rightChildNum];
 
     Node r = dataVector[y.leftChildNum]; // will not change
     Node g = dataVector[y.leftChildNum];
-    Node b = dataVector[x->rightChildNum]; // will not change
+    Node b = dataVector[x.rightChildNum]; // will not change
 
-    x->leftChildNum = g.priority;
-    y.rightChildNum = x->priority;
+    x.leftChildNum = g.priority;
+    y.rightChildNum = x.priority;
 
     x = &y;
 }
 
-void VectorBasedTreap::insert(Node* &root, int key) {
+void VectorBasedTreap::insert(const Node &root, int key) {
     if (!root) {
         insertNode(key);
     }
 
-    insert(reinterpret_cast<Node *&>(key <= root->key ? dataVector[root->leftChildNum]
-                                                      : dataVector[root->rightChildNum]), key);
+    insert(reinterpret_cast<Node *&>(key <= root->key ? dataVector[root.leftChildNum]
+                                                      : dataVector[root.rightChildNum]), key);
 
-    if (root->leftChildNum and dataVector[root->leftChildNum].priority > root->priority)
+    if (root.leftChildNum and dataVector[root->leftChildNum].priority > root.priority)
         rotateWithLeftChild(root);
 
-    if (root->rightChildNum and dataVector[root->rightChildNum].priority > root->priority)
+    if (root.rightChildNum and dataVector[root->rightChildNum].priority > root.priority)
         rotateWithRightChild(root);
 }
 
@@ -99,7 +99,7 @@ void VectorBasedTreap::insertNode(int x){
 
 
 
-void VectorBasedTreap::insert(Node* &root, int key, int priority = -1) {
+void VectorBasedTreap::insert(const Node &root, int key, int priority = -1) {
     if (root == NULL) {
         root = new Node(key, -1, -1, priority);
     }
@@ -109,23 +109,23 @@ void VectorBasedTreap::insert(Node* &root, int key, int priority = -1) {
 
 }
 
-void VectorBasedTreap::split(Node* &t, int key, Node* &l, Node* &r) {
+void VectorBasedTreap::split(const Node &t, int key,const Node &l,const Node &r) {
     int inf = 0x3f3f3f3f;
 
     insert(t, key, inf);
 
-    l = &dataVector[t->leftChildNum];
-    r = &dataVector[t->rightChildNum];
+    l = dataVector[t.leftChildNum];
+    r = dataVector[t.rightChildNum];
 }
 
 
-int VectorBasedTreap::sumFrom(Node* &start){
+int VectorBasedTreap::sumFrom(const Node &start){
     if (start == NULL) {
         return 0;
     }
 
-    return (start->key + sumFrom(reinterpret_cast<Node *&>(dataVector[start->leftChildNum])) + sumFrom(
-            reinterpret_cast<Node *&>(dataVector[start->rightChildNum])));
+    return (start.key + sumFrom(reinterpret_cast<Node *&>(dataVector[start.leftChildNum])) + sumFrom(
+            reinterpret_cast<Node *&>(dataVector[start.rightChildNum])));
 }
 
 
